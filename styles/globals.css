@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hub-text {
+  @apply bg-gradient-to-b from-sky-400 to-sky-600 bg-clip-text text-transparent;
+}
+
+@layer components {
+  .my-button {
+    background-color: brown;
+    color: white;
+    padding: 12px 16px 12px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

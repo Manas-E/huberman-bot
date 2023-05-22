@@ -1,0 +1,7 @@
+- [Science of Muscle Growth, Increasing Strength & Muscular Recovery | Huberman Lab Podcast #22](https://www.youtube.com/watch?v=XLr2RKoD-oY&ab_channel=AndrewHuberman)
+- [The Science of Making & Breaking Habits | Huberman Lab Podcast #53](https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman)
+- [Controlling Your Dopamine For Motivation, Focus & Satisfaction | Huberman Lab Podcast #39](https://www.youtube.com/watch?v=QmOF0crdyRU&ab_channel=AndrewHuberman)
+- [Master Your Sleep & Be More Alert When Awake | Huberman Lab Podcast #2](https://www.youtube.com/watch?v=nm1TxQj9IsQ&ab_channel=AndrewHuberman)
+- [Dr. Andy Galpin: How to Build Strength, Muscle Size & Endurance | Huberman Lab Podcast #65](https://www.youtube.com/watch?v=IAnhFUUCq6c&ab_channel=AndrewHuberman)
+- [How to Lose Fat with Science-Based Tools | Huberman Lab Podcast #21](https://www.youtube.com/watch?v=GqPGXG5TlZw&ab_channel=AndrewHuberman)
+- [Effects of Fasting & Time Restricted Eating on Fat Loss & Health | Huberman Lab Podcast #41](https://www.youtube.com/watch?v=9tRohh0gErM&ab_channel=AndrewHuberman)
