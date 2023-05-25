@@ -15,6 +15,7 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>HubermanBOT</title>
         <link rel="manifest" href="./manifest.json" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Component {...pageProps} />

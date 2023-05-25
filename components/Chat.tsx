@@ -83,6 +83,7 @@ export function Chat() {
         },
         body: JSON.stringify({
           question,
+          chatHistory: messages.slice(-6),
         }),
       });
       if (!response.ok) {

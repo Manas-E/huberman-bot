@@ -6,14 +6,19 @@ import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { openai } from "../../utils/openai-client";
 import { pinecone } from "../../utils/pinecone-client";
 import { PINECONE_INDEX_NAME } from "../../config/pinecone";
+import { ConversationalRetrievalQAChain } from "langchain/chains";
+
 import * as mockData from "./mock.json";
+import { CombineChatHistory } from "../../utils/combineChatHistory";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { question } = req.body;
+  const { question, chatHistory } = req.body;
 
+  console.log(CombineChatHistory(chatHistory.slice(1)), "<<<<");
   const shouldMockTheRes = false;
+  const combinedChatHistory = CombineChatHistory(chatHistory.slice(1));
 
   if (!question) {
     return res.status(400).json({ message: "No question in the request" });
@@ -38,16 +43,26 @@ export default async function handler(
     );
 
     const model = openai;
+
+    // Normal similarity search on vector store
+
     // create the chain
-    const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
-      k: 1,
-      returnSourceDocuments: true,
-    });
+    // const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
+    //   k: 1,
+    //   returnSourceDocuments: true,
+    // });
+
+    const chain = ConversationalRetrievalQAChain.fromLLM(
+      model,
+      vectorStore.asRetriever(),
+      { returnSourceDocuments: true }
+    );
 
     //Ask a question
-    const response = await chain.call({ query: sanitizedQuestion });
-
-    console.log("response", response);
+    const response = await chain.call({
+      question: sanitizedQuestion,
+      chat_history: combinedChatHistory,
+    });
 
     res.status(200).json(response);
   } catch (error: any) {

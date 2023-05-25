@@ -9,7 +9,6 @@ function truncateString(str: string) {
   }
 }
 function VideoCard(props) {
-  console.log(props, "====================");
   const isThumbnail = props["thumbnails.high.url"];
   const onlyButton = !isThumbnail && !props.title && props.source;
   return (

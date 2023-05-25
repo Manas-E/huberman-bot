@@ -42,3 +42,4 @@ yarn-error.log*
 
 .env
 document_logs.txt
+/public/sw.js.map
