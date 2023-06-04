@@ -28,7 +28,7 @@ const run = async () => {
         console.log("File written successfully\n");
       }
     });
-    console.log("split docs", docs);
+    console.log("split docs", docs.length);
 
     console.log("creating vector store...");
     /*create and store the embeddings in the vectorStore*/
@@ -49,8 +49,6 @@ const run = async () => {
     const storeRes = await PineconeStore.fromDocuments(docs, embeddings, {
       pineconeIndex,
     });
-
-    // console.log(docs);
   } catch (error) {
     console.log("error", error);
     throw new Error("Failed to ingest your data");

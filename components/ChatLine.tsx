@@ -3,6 +3,7 @@ import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import VideoCard from "./VideoCard";
 import { memo } from "react";
+import Avatar from "./Avatar";
 
 // wrap Balancer to remove type errors :( - @TODO - fix this ugly hack
 const BalancerWrapper = (props: any) => <Balancer {...props} />;
@@ -47,7 +48,7 @@ const convertNewLines = (text: string) => {
   ));
 };
 
-function ChatLine({ role = "assistant", content, metaData, id }) {
+function ChatLine({ role = "assistant", content, metaData, id, session }) {
   if (!content) {
     return null;
   }
@@ -56,37 +57,62 @@ function ChatLine({ role = "assistant", content, metaData, id }) {
 
   return (
     <div
-      id={"message-" + id}
-      className={
-        role != "assistant"
-          ? "float-right clear-both"
-          : "float-left clear-both  animate-slide-in-fade-in"
-      }
+    // className={`flex gap-2.5 relative ${
+    //   role != "assistant" ? "left-10" : ""
+    // }`}
     >
-      <BalancerWrapper>
-        <div className="float-right mb-5 rounded-lg bg-white px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6">
-          <div className="flex space-x-3">
-            <div className="flex-1 gap-4">
-              <p className="font-large text-xxl text-gray-900">
-                <a href="#" className="hover:underline">
-                  {role == "assistant" ? "AI" : "You"}
-                </a>
-              </p>
-              <p
-                className={clsx(
-                  "text ",
-                  role == "assistant" ? "font-semibold " : "text-gray-400"
-                )}
-              >
-                {formatteMessage}
-              </p>
+      <div
+        id={"message-" + id}
+        className={
+          role != "assistant"
+            ? "float-right clear-both"
+            : "float-left clear-both  animate-slide-in-fade-in"
+        }
+      >
+        <BalancerWrapper>
+          <div
+            className={
+              role != "assistant"
+                ? "flex gap-2.5 items-end relative right-[-50px]"
+                : "flex flex-col"
+            }
+          >
+            {/* {role == "assistant" && (
+              <Avatar
+                src={role != "assistant" ? session.user.image : "/avatar.png"}
+              ></Avatar>
+            )} */}
+            <div className="float-right mb-5 rounded-lg bg-white px-4 py-5 shadow-lg ring-1 ring-zinc-100 sm:px-6">
+              <div className="flex space-x-3">
+                <div className="flex-1 gap-4">
+                  <p className="font-large text-xxl text-gray-900">
+                    <a href="#" className="hover:underline">
+                      {role == "assistant" ? "AI" : "You"}
+                    </a>
+                  </p>
+                  <p
+                    className={clsx(
+                      "text ",
+                      role == "assistant" ? "font-semibold " : "text-gray-400"
+                    )}
+                  >
+                    {formatteMessage}
+                  </p>
+                </div>
+              </div>
             </div>
+            {role != "assistant" && (
+              <Avatar
+                src={role != "assistant" ? session.user.image : "/avatar.png"}
+                className="mb-5 hidden md:block"
+              ></Avatar>
+            )}
+            {role === "assistant" && metaData && (
+              <VideoCard {...metaData}></VideoCard>
+            )}
           </div>
-        </div>
-        {role === "assistant" && metaData && (
-          <VideoCard {...metaData}></VideoCard>
-        )}
-      </BalancerWrapper>
+        </BalancerWrapper>
+      </div>
     </div>
   );
 }

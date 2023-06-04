@@ -12,7 +12,7 @@ function VideoCard(props) {
   const isThumbnail = props["thumbnails.high.url"];
   const onlyButton = !isThumbnail && !props.title && props.source;
   return (
-    <div className="mb-5 ">
+    <div className="mb-5 min-w-[200px] md:min-w-[380px]">
       <h3 className="text-white text-xl font-semibold">Reference: </h3>
       {onlyButton ? (
         <div className="card-actions justify-end">

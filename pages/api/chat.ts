@@ -16,9 +16,7 @@ export default async function handler(
 ) {
   const { question, chatHistory } = req.body;
 
-  console.log(CombineChatHistory(chatHistory.slice(1)), "<<<<");
   const shouldMockTheRes = false;
-  const combinedChatHistory = CombineChatHistory(chatHistory.slice(1));
 
   if (!question) {
     return res.status(400).json({ message: "No question in the request" });
@@ -47,26 +45,39 @@ export default async function handler(
     // Normal similarity search on vector store
 
     // create the chain
-    // const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
-    //   k: 1,
-    //   returnSourceDocuments: true,
-    // });
 
-    const chain = ConversationalRetrievalQAChain.fromLLM(
-      model,
-      vectorStore.asRetriever(),
-      { returnSourceDocuments: true }
-    );
+    if (process?.env?.USE_CONTEXT === "true") {
+      console.log("context QA chain");
 
-    //Ask a question
-    const response = await chain.call({
-      question: sanitizedQuestion,
-      chat_history: combinedChatHistory,
-    });
+      const combinedChatHistory = CombineChatHistory(chatHistory?.slice(1));
+      const chain = ConversationalRetrievalQAChain.fromLLM(
+        model,
+        vectorStore.asRetriever(),
+        { returnSourceDocuments: true }
+      );
+      console.log(combinedChatHistory, "==");
+      const response = await chain.call({
+        question: sanitizedQuestion,
+        chat_history: combinedChatHistory,
+      });
 
-    res.status(200).json(response);
+      return res.status(200).json(response);
+    } else {
+      console.log("simple QA chain");
+      const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
+        k: 1,
+        returnSourceDocuments: true,
+      });
+
+      // Ask a question
+      const response = await chain.call({
+        query: sanitizedQuestion,
+      });
+
+      res.status(200).json(response);
+    }
   } catch (error: any) {
-    console.log("error", error);
-    res.status(500).json({ error: error?.message || "Unknown error." });
+    console.log("error ", error, "<<<");
+    res.status(error.status).json({ error: error.message });
   }
 }

@@ -7,20 +7,24 @@ import "@vercel/examples-ui/globals.css";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import "../styles/globals.css";
 import Head from "next/head";
+import { SessionProvider } from "next-auth/react";
+
 function App({ Component, pageProps }: AppProps) {
   const Layout = getLayout<LayoutProps>(Component);
 
   return (
-    <div className="bg-[#121C23] text-white">
-      <Head>
-        <title>HubermanBOT</title>
-        <link rel="manifest" href="./manifest.json" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#ffffff" />
-      </Head>
-      <Component {...pageProps} />
-      <Analytics />
-    </div>
+    <SessionProvider session={pageProps.session}>
+      <div className="bg-[#121C23] text-white">
+        <Head>
+          <title>HubermanBOT</title>
+          <link rel="manifest" href="./manifest.json" />
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+          <meta name="theme-color" content="#ffffff" />
+        </Head>
+        <Component {...pageProps} />
+        <Analytics />
+      </div>
+    </SessionProvider>
   );
 }
 

@@ -1,8 +1,14 @@
 import { Layout, Page, Text } from "@vercel/examples-ui";
 import Image from "next/image";
 import { Chat } from "../components/Chat";
+import Modal from "../components/Modal";
+import ErrorModal from "../components/Modal";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { Button } from "../components/Button";
 
 function Home(props: any) {
+  const { data: session } = useSession();
+
   return (
     <Page className="flex flex-col gap-12 pt-0 md:py-16 ">
       <Image
@@ -24,12 +30,11 @@ function Home(props: any) {
           A Knowledge bot based upon Huberman lab's podcast
         </Text>
       </section>
-
       <section className="flex flex-col px-4 gap-3 justify-center items-center">
         <Text variant="h2" className="hub-text ">
           HubermanBot
         </Text>
-        <div className="lg:w-2/3 mt-5 lg:mt-0 flex justify-center ">
+        <div className="lg:w-2/3 mt-5 lg:mt-0 flex justify-center mx--10">
           <Chat />
         </div>
       </section>
