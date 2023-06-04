@@ -8,8 +8,8 @@ dotenv.config();
 (async () => {
   const client = new PineconeClient();
   let clientInit = await client.init({
-    apiKey: process.env.PINECONE_API_KEY,
-    environment: process.env.PINECONE_ENVIRONMENT,
+    apiKey: process.env.PINECONE_API_KEY ?? "",
+    environment: process.env.PINECONE_ENVIRONMENT ?? "",
   });
   const pineconeIndex = client.Index("hub-index");
 

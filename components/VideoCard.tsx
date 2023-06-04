@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { memo } from "react";
+import { MetaDataProps } from "./types/common";
 
 function truncateString(str: string) {
   if (str.length > 70) {
@@ -8,7 +9,7 @@ function truncateString(str: string) {
     return str;
   }
 }
-function VideoCard(props) {
+function VideoCard(props: any) {
   const isThumbnail = props["thumbnails.high.url"];
   const onlyButton = !isThumbnail && !props.title && props.source;
   return (

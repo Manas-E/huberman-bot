@@ -27,7 +27,7 @@ function Home(props: any) {
           Science based solutions for your problems
         </Text>
         <Text className="hub-text">
-          A Knowledge bot based upon Huberman lab's podcast
+          A Knowledge bot based upon Huberman lab&apos;s podcast
         </Text>
       </section>
       <section className="flex flex-col px-4 gap-3 justify-center items-center">

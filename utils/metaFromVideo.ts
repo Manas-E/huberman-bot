@@ -5,7 +5,7 @@ export async function metaFromData(id: string) {
 
   console.log(videoData);
 
-  const snippet = videoData?.items[0]?.snippet;
+  const snippet = videoData && videoData?.items[0]?.snippet;
 
   return {
     thumbnails: snippet?.thumbnails,

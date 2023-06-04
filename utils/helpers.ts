@@ -5,6 +5,11 @@ import { Document } from "langchain/document";
 import { readText } from "./read";
 import { metaFromData } from "./metaFromVideo";
 
+interface VideoElement {
+  title: any;
+  url: string;
+}
+
 export async function processMarkDownFiles(
   directoryPath: string
 ): Promise<Document[]> {
@@ -21,7 +26,8 @@ export async function processMarkDownFiles(
       let URL_REGEX =
         /\[\*\*(https?:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=[A-Za-z0-9_-]+(?:&[a-zA-Z0-9_=-]+)?)(?:&t=\d+s)?\*\*\]/;
 
-      let url = text?.match(URL_REGEX)[0]?.slice(3, -3);
+      const match = text?.match(URL_REGEX);
+      let url = match?.length && match[0]?.slice(3, -3);
       const metadata = { title: fileName, source: url };
       docs.push(
         new Document({
@@ -68,51 +74,53 @@ export async function processTextFiles(
   }
 }
 
-export async function text2mdx(directoryPath) {
-  try {
-    const fileNames = await glob("**/*.txt", { cwd: directoryPath });
-    console.log("files", fileNames);
+// commenting out due to build error
 
-    const videoList = [];
+// export async function text2mdx(directoryPath: string) {
+//   try {
+//     const fileNames = await glob("**/*.txt", { cwd: directoryPath });
+//     console.log("files", fileNames);
 
-    for (const fileName of fileNames) {
-      const filePath = path.join(directoryPath, fileName);
-      const text = await readText(filePath);
-      const vidId = fileName.split("_")[1].replace(".txt", "");
-      const { title, thumbnails, channel } = await metaFromData(vidId);
-      const abChannel = channel?.split(" ").join("");
-      const youtubeUrl = `https://www.youtube.com/watch?v=${vidId}&ab_channel=${abChannel}`;
-      videoList.push({
-        title,
-        url: youtubeUrl,
-      });
-    }
-    convertToMarkdown(videoList, "output_dir/video-list.md");
-    return videoList;
-  } catch (error) {
-    console.log("error", error);
-    throw new Error(`Could not read directory path ${directoryPath} `);
-  }
-}
+//     const videoList = [];
 
-function convertToMarkdown(podcastData, outputPath) {
-  // Create the Markdown content
-  let markdownContent = "";
+//     for (const fileName of fileNames) {
+//       const filePath = path.join(directoryPath, fileName);
+//       const text = await readText(filePath);
+//       const vidId = fileName.split("_")[1].replace(".txt", "");
+//       const { title, thumbnails, channel } = await metaFromData(vidId);
+//       const abChannel = channel?.split(" ").join("");
+//       const youtubeUrl = `https://www.youtube.com/watch?v=${vidId}&ab_channel=${abChannel}`;
+//       videoList.push({
+//         title,
+//         url: youtubeUrl,
+//       });
+//     }
+//     convertToMarkdown(videoList, "output_dir/video-list.md");
+//     return videoList;
+//   } catch (error) {
+//     console.log("error", error);
+//     throw new Error(`Could not read directory path ${directoryPath} `);
+//   }
+// }
 
-  for (const podcast of podcastData) {
-    if (podcast.title) {
-      markdownContent += `- [${podcast.title}](${podcast.url})\n`;
-    }
-  }
+// commenting out due to build error
 
-  // Save the Markdown content to a file
-  fs.writeFile(outputPath, markdownContent, (err) => {
-    if (err) {
-      console.error("Error saving Markdown file:", err);
-    } else {
-      console.log(`Markdown file saved successfully at ${outputPath}`);
-    }
-  });
-}
+// function convertToMarkdown(podcastData: VideoElement[], outputPath: string) {
+//   // Create the Markdown content
+//   let markdownContent = "";
 
+//   for (const podcast of podcastData) {
+//     if (podcast.title) {
+//       markdownContent += `- [${podcast.title}](${podcast.url})\n`;
+//     }
+//   }
 
+//   // Save the Markdown content to a file
+//   fs.writeFile(outputPath, markdownContent, (err: any) => {
+//     if (err) {
+//       console.error("Error saving Markdown file:", err);
+//     } else {
+//       console.log(`Markdown file saved successfully at ${outputPath}`);
+//     }
+//   });
+// }

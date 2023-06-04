@@ -4,6 +4,7 @@ import Balancer from "react-wrap-balancer";
 import VideoCard from "./VideoCard";
 import { memo } from "react";
 import Avatar from "./Avatar";
+import { ChatlineProps, MetaDataProps } from "./types/common";
 
 // wrap Balancer to remove type errors :( - @TODO - fix this ugly hack
 const BalancerWrapper = (props: any) => <Balancer {...props} />;
@@ -13,6 +14,7 @@ type ChatGPTAgent = "user" | "system" | "assistant";
 export interface ChatGPTMessage {
   role: ChatGPTAgent;
   content: string;
+  metaData?: MetaDataProps;
 }
 
 // loading placeholder animation for the chat line
@@ -48,7 +50,7 @@ const convertNewLines = (text: string) => {
   ));
 };
 
-function ChatLine({ role = "assistant", content, metaData, id, session }) {
+function ChatLine({ role = "assistant", content, metaData, id, session }:ChatlineProps) {
   if (!content) {
     return null;
   }

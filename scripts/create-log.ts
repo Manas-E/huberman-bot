@@ -1,5 +1,6 @@
-import { text2mdx } from "../utils/helpers";
+// import { text2mdx } from "../utils/helpers";
 
-const directoryPath = "transcripts";
+// const directoryPath = "transcripts";
 
-text2mdx(directoryPath);
+// text2mdx(directoryPath);
+export {};
