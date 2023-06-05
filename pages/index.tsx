@@ -5,12 +5,14 @@ import Modal from "../components/Modal";
 import ErrorModal from "../components/Modal";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "../components/Button";
+import { useState } from "react";
 
 function Home(props: any) {
   const { data: session } = useSession();
+  const [showGif, setShowGif] = useState(false);
 
   return (
-    <Page className="flex flex-col gap-12 pt-0 md:py-16 ">
+    <Page className="flex flex-col gap-12 pt-0 md:py-16 justify-center">
       <Image
         src="/andrew.webp"
         width={400}
@@ -38,6 +40,31 @@ function Home(props: any) {
           <Chat />
         </div>
       </section>
+      <footer className="self-center cursor-pointer ">
+        <Image
+          src="/hello.gif"
+          width={200}
+          height={200}
+          alt="Hello GIF"
+          className={`border-8  border-primary translate-x-[-20%] mb-2.5 ${
+            showGif ? "visible" : "invisible"
+          }`}
+        ></Image>
+        <div
+          className=" group transition duration-300 max-w-fit"
+          onPointerEnter={() => setShowGif(true)}
+          onPointerLeave={() => setShowGif(false)}
+        >
+          <a
+            href="https://twitter.com/devBiceps"
+            target="_blank"
+            rel="noreferrer"
+          >
+            By Manas Sharma 💙
+          </a>
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-600 "></span>
+        </div>
+      </footer>
     </Page>
   );
 }

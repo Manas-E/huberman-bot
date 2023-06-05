@@ -41,6 +41,10 @@ const nextConfig = withPWA({
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "giphy.com",
+      },
     ],
   },
 });
