@@ -20,6 +20,17 @@ function App({ Component, pageProps }: AppProps) {
           <link rel="manifest" href="./manifest.json" />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
           <meta name="theme-color" content="#ffffff" />
+          <meta property="og:title" content="HubermanBot" />
+          <meta
+            property="og:description"
+            content="A Science based AI chatbot, that will help you become 10X"
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.hubermanbot.live/" />
+          <meta
+            property="og:image"
+            content="https://www.hubermanbot.live/public/andrew.webp"
+          />
         </Head>
         <Component {...pageProps} />
         <Analytics />

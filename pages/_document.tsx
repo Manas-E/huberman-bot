@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta
           name="description"
-          content="HubermanBot is a fan made llm chatbot based upon the data of Dr. Andrew Huberman's youtube channel, you can ask it any questions and it will give you the answers based upon its knowledge from Dr. Huberman's videos"
+          content="HubermanBot is a fan made llm chatbot based upon the data of Professor Andrew Huberman's youtube channel, you can ask it any questions and it will give you the answers based upon its knowledge from Professor Huberman's videos"
         />
         <html lang="en" />
       </Head>

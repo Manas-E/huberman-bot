@@ -18,7 +18,7 @@ function Home(props: any) {
         width={400}
         height={300}
         className=" md:self-end"
-        alt="banner"
+        alt="Huberman Bot banner"
         priority
       ></Image>
       <section className="flex flex-col gap-6 px-4">
