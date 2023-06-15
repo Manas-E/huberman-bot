@@ -41,7 +41,6 @@ export const LoadingChatLine = () => (
 
 // util helper to convert new lines to <br /> tags
 const convertNewLines = (text: string) => {
-  console.log(text, "<<");
   return text?.split("\n")?.map((line, i) => (
     <span key={i} className="animate-typing">
       {line}
@@ -50,11 +49,16 @@ const convertNewLines = (text: string) => {
   ));
 };
 
-function ChatLine({ role = "assistant", content, metaData, id, session }:ChatlineProps) {
+function ChatLine({
+  role = "assistant",
+  content,
+  metaData,
+  id,
+  session,
+}: ChatlineProps) {
   if (!content) {
     return null;
   }
-  console.log(content, "=======");
   const formatteMessage = convertNewLines(content);
 
   return (
@@ -75,7 +79,7 @@ function ChatLine({ role = "assistant", content, metaData, id, session }:Chatlin
           <div
             className={
               role != "assistant"
-                ? "flex gap-2.5 items-end relative right-[-50px]"
+                ? "flex gap-2.5 items-end relative md:right-[-50px]"
                 : "flex flex-col"
             }
           >

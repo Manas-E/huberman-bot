@@ -6,6 +6,7 @@ import ErrorModal from "../components/Modal";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "../components/Button";
 import { useState } from "react";
+import Typewriter from "../components/Typewriter";
 
 function Home(props: any) {
   const { data: session } = useSession();
@@ -29,10 +30,12 @@ function Home(props: any) {
           Science based solutions for your problems
         </Text>
         <Text className="hub-text">
-          A Knowledge bot based upon Huberman lab&apos;s podcast
+          Embark on an Enlightening Journey through Professor Andrew
+          Huberman&apos;s Insights with HubermanBot, Your Personalized Chatbot
+          Companion!
         </Text>
       </section>
-      <section className="flex flex-col px-4 gap-3 justify-center items-center">
+      <section className="flex flex-col mx-4 gap-3 justify-center items-center">
         <Text variant="h2" className="hub-text ">
           HubermanBot
         </Text>
