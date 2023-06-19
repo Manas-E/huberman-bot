@@ -1,23 +1,8 @@
 import { Layout, Page, Text } from "@vercel/examples-ui";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useState } from "react";
 import { Chat } from "../components/Chat";
-import Modal from "../components/Modal";
-import ErrorModal from "../components/Modal";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { Button } from "../components/Button";
-import { useEffect, useState } from "react";
-import Typewriter from "../components/Typewriter";
-
-import {
-  collection,
-  QueryDocumentSnapshot,
-  DocumentData,
-  query,
-  where,
-  limit,
-  getDocs,
-} from "@firebase/firestore";
-import db, { firestore } from "../firebase";
 
 function Home(props: any) {
   const { data: session } = useSession();
