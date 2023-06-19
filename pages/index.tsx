@@ -25,7 +25,7 @@ function Home(props: any) {
         >
           Science based solutions for your problems
         </Text>
-        <Text className="hub-text">
+        <Text className="hub-text w-[75%]">
           Embark on an Enlightening Journey through Professor Andrew
           Huberman&apos;s Insights with HubermanBot, Your Personalized Chatbot
           Companion!
