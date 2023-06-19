@@ -10,11 +10,12 @@ import { ConversationalRetrievalQAChain } from "langchain/chains";
 
 import * as mockData from "./mock.json";
 import { CombineChatHistory } from "../../utils/combineChatHistory";
+import { saveQuestion } from "../../utils/database";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { question, chatHistory } = req.body;
+  const { question, chatHistory, user } = req.body;
 
   const shouldMockTheRes = false;
 
@@ -73,11 +74,20 @@ export default async function handler(
       const response = await chain.call({
         query: sanitizedQuestion,
       });
-
+      try {
+        saveQuestion(JSON.parse(user), question, { success: true });
+      } catch (error: any) {
+        console.log("Firebase Error: ", error);
+      }
       res.status(200).json(response);
     }
   } catch (error: any) {
     console.log("error ", error, "<<<");
+    saveQuestion(JSON.parse(user), question, {
+      success: false,
+      error: error.message,
+    });
+
     res.status(error.status).json({ error: error.message });
   }
 }

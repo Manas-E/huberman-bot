@@ -36,13 +36,13 @@ const run = async () => {
       openAIApiKey: process.env.OPENAI_API_KEY,
       temperature: process.env.AI_TEMP,
     });
-
+    
     const client = new PineconeClient();
     await client.init({
       apiKey: process.env.PINECONE_API_KEY ?? "",
       environment: process.env.PINECONE_ENVIRONMENT ?? "",
     });
-    const pineconeIndex = client.Index("hub-index");
+    const pineconeIndex = client.Index(PINECONE_INDEX_NAME);
     const index = pinecone.Index(PINECONE_INDEX_NAME); //change to your own index name
 
     console.log("Index done");

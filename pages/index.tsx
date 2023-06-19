@@ -5,8 +5,19 @@ import Modal from "../components/Modal";
 import ErrorModal from "../components/Modal";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "../components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Typewriter from "../components/Typewriter";
+
+import {
+  collection,
+  QueryDocumentSnapshot,
+  DocumentData,
+  query,
+  where,
+  limit,
+  getDocs,
+} from "@firebase/firestore";
+import db, { firestore } from "../firebase";
 
 function Home(props: any) {
   const { data: session } = useSession();

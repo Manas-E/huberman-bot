@@ -21,6 +21,7 @@
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
     "eventsource-parser": "^0.1.0",
+    "firebase": "^9.22.2",
     "firebase-admin": "^11.9.0",
     "glob": "^10.2.1",
     "googleapis": "^118.0.0",

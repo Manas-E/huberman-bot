@@ -126,6 +126,7 @@ export function Chat() {
         body: JSON.stringify({
           question,
           chatHistory: messages.slice(-6),
+          user: JSON.stringify(session?.user),
         }),
       });
 
