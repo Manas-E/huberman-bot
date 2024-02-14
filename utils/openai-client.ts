@@ -6,7 +6,7 @@ if (!process.env.OPENAI_API_KEY) {
 
 export const openai = process.env.USE_CUSTOM_MODEL
   ? new OpenAI({
-      model: process.env.OPENAI_MODEL,
+    modelName: process.env.OPENAI_MODEL,
       temperature: 0,
       maxTokens: 500,
     })

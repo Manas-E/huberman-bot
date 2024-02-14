@@ -137,7 +137,7 @@ export function Chat() {
       }
       const res = await response.json();
 
-      const metaData = res.sourceDocuments[0].metadata;
+      const metaData = res?.sourceDocuments[0]?.metadata;
       if (res.text) {
         setAnswer(res.text);
       }
